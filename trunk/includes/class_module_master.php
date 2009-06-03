@@ -87,7 +87,7 @@ class module_master
 		{
 			if (empty($class) || $load_module['class'] == $class)
 			{
-				array_push($this->_module_output, array($load_module['name'] => $this->$load_module['instant']->get_output));
+				array_push($this->_module_output, array($load_module['internal'] => $this->$load_module['instant']->get_output));
 			}
 		}
 		
