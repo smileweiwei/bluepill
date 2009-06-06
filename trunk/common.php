@@ -36,6 +36,7 @@ function __autoload($temp)
 define('BASE_DIR', getcwd() . '/');
 
 $template = new template();
+$template->set_template_name('test'); // @todo Sample template, should be in user object when that's written
 
 require 'config.php';
 $db = NewADOConnection($db_info['dbms']);

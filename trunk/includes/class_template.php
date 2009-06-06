@@ -23,8 +23,23 @@ class template extends Savant3
 	private $_protected_variables = array();
 	
 	/**
+	* The name of the style we are using
+	*/
+	private $_style = '';
+	
+	/**
+	* The location of the style on the filesystem
+	*/
+	private $_style_location = '';
+	
+	/**
+	* The extension for our template files
+	*/
+	private $_template_ext = 'tpl';
+	
+	/**
 	* Assigns variables to the Savant instance for use in the template
-	* @param string $name The name the variable will use within the Savant instance
+	* @param mixed $name The name the variable will use within the Savant instance
 	* @param mixed $value The value of the variable that will be used within the template
 	* @param bool $overwrite Whether or not the value should be overwritten if the variable already exists (default to true)
 	* @param bool $protected Defines if our variable can be overwritten (only define false if vital to system functions)
@@ -66,22 +81,40 @@ class template extends Savant3
 		return false;
 	}
 	
-	/*
+	/**
 	* Setup a custom template loading function that allows us to specify a custom theme.
-	* @param string $template_file Then name of the template file to return
+	* @param mixed $template_file Then name of the template file to return
 	* @return bool Returns true if successful, otherwise throws an exception if the file does not exist
 	*/
 	function load($template_file)
 	{
-		$theme = 'test'; // @todo we need to actually get this the right way, this is placeholder
-		$ template_file = BASE_DIR . '/styles/' . $theme . '/' . $template_file . '.tpl';
-		
-		if (!file_exists($template_file))
+		if (!file_exists($this->_style_location . $template_file . '.' . $this->_template_ext))
 		{
-			throw new exception('Could not load template file ' . $template_file . ' in theme ' . $theme);
+			throw new exception('Could not load template file ' . $template_file . ' in theme ' . $this->_style);
 		}
 		
-		$this->display($template_file);
+		$this->display($template_file . '.' . $this->_template_ext);
+		return true;
+	}
+	
+	/**
+	* Set the template name, needed for various things
+	* @param mixed $template_name The name of the template we are setting
+	* @return bool Returns true, throws exception if template does not exist
+	*/
+	function set_template_name($template_name)
+	{
+		$template_path = BASE_DIR . '/styles/' . $template_name . '/';
+		
+		if (!is_dir($template_path))
+		{
+			throw new exception('Template ' . $template_name . ' does not exist at location ' . $template_path);
+		}
+		
+		$this->setPath($template_path);
+		$this->_style = $template_name;
+		$this->_style_location = $template_path;
+		
 		return true;
 	}
 }
