@@ -34,11 +34,6 @@ abstract class module
 	public $_version = null;
 	
 	/**
-	* The module author
-	*/
-	public $_author = null;
-	
-	/**
 	* The module class (the folder it is located in)
 	*/
 	public $_class = null;

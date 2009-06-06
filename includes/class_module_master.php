@@ -39,7 +39,7 @@ class module_master
 	function load($internal_name, $mode = '', $args = array(), $module_class = '')
 	{
 		// First we need to make sure the module exists
-		if (!file_exists(BASE_DIR . 'modules/'  (empty($module_class) ? '' : $module_class . '/') . $internal_name . '.php') || class_exists($internal_name)))
+		if (!file_exists(BASE_DIR . 'modules/' . (empty($module_class) ? '' : $module_class . '/') . $internal_name . '.php') || class_exists($internal_name))
 		{
 			return false;
 		}
@@ -47,7 +47,7 @@ class module_master
 		require BASE_DIR . 'modules/' . (empty($module_class) ? '' : $module_class . '/') . $internal_name . '.php';
 		
 		// Since some modules specify dependencies, see if those are loaded and return false if they are not
-		if (sizeof($internal_name::_dependencies))
+		if (sizeof($internal_name::$_dependencies))
 		{
 			foreach($internal_name::_dependencies as $depends)
 			{

@@ -13,7 +13,7 @@
 * By using this, it means that we do not need to include them on our own...
 * PHP will check here if the function does not exist and include all of these for us
 */
-function __autoload()
+function __autoload($temp)
 {
 	/**
 	* The Savant template engine and our own implementation
