@@ -65,6 +65,12 @@ class template extends Savant3
 		
 		return false;
 	}
+	
+	/*
+	* Setup a custom template loading function that allows us to specify a custom theme.
+	* @param string $template_file Then name of the template file to return
+	* @return bool Returns true if successful, otherwise throws an exception if the file does not exist
+	*/
 	function load($template_file)
 	{
 		$theme = 'test'; // @todo we need to actually get this the right way, this is placeholder
