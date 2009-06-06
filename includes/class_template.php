@@ -111,7 +111,7 @@ class template extends Savant3
 			throw new exception('Template ' . $template_name . ' does not exist at location ' . $template_path);
 		}
 		
-		$this->setPath($template_path);
+		$this->setPath('template', $template_path);
 		$this->_style = $template_name;
 		$this->_style_location = $template_path;
 		
