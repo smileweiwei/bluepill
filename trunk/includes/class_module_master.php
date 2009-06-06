@@ -62,6 +62,8 @@ class module_master
 			}
 		}
 		
+		unset($module_temp);
+		
 		$gen_name = '_' . md5($internal_name . time());
 		
 		$this->$gen_name = new $internal_name;
