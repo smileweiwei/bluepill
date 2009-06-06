@@ -65,5 +65,18 @@ class template extends Savant3
 		
 		return false;
 	}
+	function load($template_file)
+	{
+		$theme = 'test'; // @todo we need to actually get this the right way, this is placeholder
+		$ template_file = BASE_DIR . '/styles/' . $theme . '/' . $template_file . '.tpl';
+		
+		if (!file_exists($template_file))
+		{
+			throw new exception('Could not load template file ' . $template_file . ' in theme ' . $theme);
+		}
+		
+		$this->display($template_file);
+		return true;
+	}
 }
 ?>
