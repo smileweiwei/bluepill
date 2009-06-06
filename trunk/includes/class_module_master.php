@@ -46,10 +46,14 @@ class module_master
 		
 		require BASE_DIR . 'modules/' . (empty($module_class) ? '' : $module_class . '/') . $internal_name . '.php';
 		
+		/* Looks like we need to do an instantiation to get the info we want, then do it again for the script.
+		 @todo remove for PHP 5.3.0 */
+		$module_temp =& new $internal_name;
+		
 		// Since some modules specify dependencies, see if those are loaded and return false if they are not
-		if (sizeof($internal_name::$_dependencies))
+		if (sizeof($module_temp->$_dependencies))
 		{
-			foreach($internal_name::_dependencies as $depends)
+			foreach($module->temp->_dependencies as $depends)
 			{
 				if (!in_array($this->_modules, $depends))
 				{
@@ -62,11 +66,11 @@ class module_master
 		
 		$this->$gen_name = new $internal_name;
 		
-		$module_details = $internal_name::_name = array(
-			'name'		=> $internal_name::_name,
-			'class'		=> $internal_name::_class,
+		$module_details = $this->$gen_name->_name = array(
+			'name'		=> $this->$gen_name->_name,
+			'class'		=> $this->$gen_name->_class,
 			'mode'		=> $mode,
-			'internal'	=> $internal_name::_internal,
+			'internal'	=> $this->$gen_name->_internal,
 			'instant'	=> $gen_name,
 		);
 		
