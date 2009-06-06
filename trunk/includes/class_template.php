@@ -20,7 +20,7 @@ class template extends Savant3
 	* Defines if our template variables are overwritable
 	* Will throw an exception if we try to override a protected variable
 	*/
-	$_protected_variables = array();
+	private $_protected_variables = array();
 	
 	/**
 	* Assigns variables to the Savant instance for use in the template
