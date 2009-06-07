@@ -27,16 +27,22 @@ function __autoload($temp)
 	require BASE_DIR . 'includes/third_party/adodb5/adodb.inc.php';
 	
 	/**
+	* Our general purpose functions
+	*/
+	require BASE_DIR . 'includes/third_party/class_general.php';
+	
+	/**
 	* Our modules system
 	*/
 	require BASE_DIR . 'includes/abstract_module.php';
 	require BASE_DIR . 'includes/class_module_master.php';
 }
 
+session_start();
+
 define('BASE_DIR', getcwd() . '/');
 
 $template = new template();
-$template->set_template_name('test'); // @todo Sample template, should be in user object when that's written
 
 require 'config.php';
 $db = NewADOConnection($db_info['dbms']);
@@ -45,6 +51,8 @@ define('DB_PREFIX', $db_info['pfix']);
 unset($db_info);
 
 require BASE_DIR . 'includes/constants.php';
+
+$general = new bluepill_general();
 
 $p_master = new module_master();
 ?>
