@@ -1,0 +1,1 @@
+Bluepill is an open-source social networking framework coded in PHP and utilizing the MySQL database engine. It is designed to be modular, allowing you to easily add the features you want!
